@@ -14,13 +14,12 @@ naive_credit.fit(X_credit_training, y_credit_training)
 
 ### Previsoes ###
 prediction = naive_credit.predict(X_credit_test)
-acuuracy_prediction = accuracy_score(y_credit_test,prediction)
+prediction_accuracy = accuracy_score(y_credit_test,prediction)
+
 
 ### Pós_precessamento ###
-
-
 def main():
-    print(acuuracy_prediction)
+    print(prediction_accuracy)
     cm = ConfusionMatrix(naive_credit)
     cm.fit(X_credit_training, y_credit_training)
     cm.score(X_credit_test, y_credit_test)

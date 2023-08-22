@@ -15,13 +15,12 @@ random_forest_census.fit(X_census_training, y_census_training)
 
 ### Previsoes ###
 prediction = random_forest_census.predict(X_census_test)
-accuracy_prediction = accuracy_score(y_census_test, prediction)
+prediction_accuracy = accuracy_score(y_census_test, prediction)
+
 
 ### Pós_processamento ###
-
-
 def main():
-    print(accuracy_prediction)
+    print(prediction_accuracy)
     print()
     cm = ConfusionMatrix(random_forest_census)
     cm.fit(X_census_training, y_census_training)

@@ -13,13 +13,12 @@ arvore_credit.fit(X_credit_training, y_credit_training)
 
 ### Previsoes ###
 prediction = arvore_credit.predict(X_credit_test)
-accuracy_prediction = accuracy_score(y_credit_test, prediction)
+prediction_accuracy = accuracy_score(y_credit_test, prediction)
+
 
 ### Pós_processamento ###
-
-
 def main():
-    print(accuracy_prediction)
+    print(prediction_accuracy)
     print()
     cm = ConfusionMatrix(arvore_credit)
     cm.fit(X_credit_training, y_credit_training)
