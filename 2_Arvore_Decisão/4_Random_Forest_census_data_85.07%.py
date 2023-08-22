@@ -5,24 +5,31 @@ from yellowbrick.classifier import ConfusionMatrix
 
 ### Pré_processamento ###
 with open('census_data.pkl', mode='rb') as f:
-    X_census_treinamento, y_census_treinamento,\
-        X_census_teste, y_census_teste = pickle.load(f)
+    X_census_training, y_census_training,\
+        X_census_test, y_census_test = pickle.load(f)
 
 ### Treinamento ###
 random_forest_census = RandomForestClassifier(
     n_estimators=100, criterion='entropy', random_state=0)
-random_forest_census.fit(X_census_treinamento, y_census_treinamento)
+random_forest_census.fit(X_census_training, y_census_training)
 
 ### Previsoes ###
-previsoes = random_forest_census.predict(X_census_teste)
+prediction = random_forest_census.predict(X_census_test)
+accuracy_prediction = accuracy_score(y_census_test, prediction)
 
 ### Pós_processamento ###
-precisao_algoritimo = accuracy_score(y_census_teste, previsoes)
-print(precisao_algoritimo)
-print()
-cm = ConfusionMatrix(random_forest_census)
-cm.fit(X_census_treinamento, y_census_treinamento)
-cm.score(X_census_teste, y_census_teste)
-cm.show()
-print(classification_report(y_census_teste, previsoes))
+
+
+def main():
+    print(accuracy_prediction)
+    print()
+    cm = ConfusionMatrix(random_forest_census)
+    cm.fit(X_census_training, y_census_training)
+    cm.score(X_census_test, y_census_test)
+    cm.show()
+    print(classification_report(y_census_test, prediction))
+
+
+if __name__ == '__main__':
+    main()
 

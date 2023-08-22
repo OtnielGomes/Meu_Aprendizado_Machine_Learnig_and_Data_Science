@@ -51,12 +51,12 @@ scaler_credit = StandardScaler()
 X_credit = scaler_credit.fit_transform(X_credit)
 
 ### Base de treinamento e teste ###
-X_credit_treinamento, X_credit_test, y_credit_treinamento, y_credit_teste = (
+X_credit_training, X_credit_test, y_credit_training, y_credit_test = (
  train_test_split(X_credit, y_credit, test_size=0.25, random_state=0))
 
 ### Salvando-pré-processamento ###
 
 with open('credit.pkl', mode='wb') as f:
-    pickle.dump([X_credit_treinamento, y_credit_treinamento,
-                 X_credit_test, y_credit_teste], f)
+    pickle.dump([X_credit_training, y_credit_training,
+                 X_credit_test, y_credit_test], f)
 

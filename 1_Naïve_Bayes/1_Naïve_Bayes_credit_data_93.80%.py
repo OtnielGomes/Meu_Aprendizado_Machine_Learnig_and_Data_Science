@@ -5,21 +5,28 @@ from yellowbrick.classifier import ConfusionMatrix
 
 ### Pré_processamento ###
 with (open('credit.pkl', mode='rb') as f):
-    X_credit_treinamento, y_credit_treinamento,\
-    X_credit_teste, y_credit_teste = pickle.load(f)
+    X_credit_training, y_credit_training,\
+    X_credit_test, y_credit_test = pickle.load(f)
 
 ### Treinamento ###
 naive_credit = GaussianNB()
-naive_credit.fit(X_credit_treinamento, y_credit_treinamento)
+naive_credit.fit(X_credit_training, y_credit_training)
 
 ### Previsoes ###
-previsoes = naive_credit.predict(X_credit_teste)
+prediction = naive_credit.predict(X_credit_test)
+acuuracy_prediction = accuracy_score(y_credit_test,prediction)
 
 ### Pós_precessamento ###
-precisao_algoritimo = accuracy_score(y_credit_teste,previsoes)
-print(precisao_algoritimo)
-cm = ConfusionMatrix(naive_credit)
-cm.fit(X_credit_treinamento, y_credit_treinamento)
-cm.score(X_credit_teste, y_credit_teste)
-cm.show()
-print(classification_report(y_credit_teste, previsoes))
+
+
+def main():
+    print(acuuracy_prediction)
+    cm = ConfusionMatrix(naive_credit)
+    cm.fit(X_credit_training, y_credit_training)
+    cm.score(X_credit_test, y_credit_test)
+    cm.show()
+    print(classification_report(y_credit_test, prediction))
+
+
+if __name__ == '__main__':
+    main()

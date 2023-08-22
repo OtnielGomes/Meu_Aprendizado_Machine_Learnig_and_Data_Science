@@ -3,7 +3,7 @@ from sklearn.preprocessing import LabelEncoder, OneHotEncoder, StandardScaler
 from sklearn.compose import ColumnTransformer
 from sklearn.model_selection import train_test_split
 import pickle
-### Pré-precessamento ###
+### Importação do banco de dados census_data ###
 census_data = pd.read_csv('census.csv')
 print(census_data)
 print(census_data.head())
@@ -54,12 +54,12 @@ X_census = scaler_census.fit_transform(X_census)
 
 ### Base de treinamento e teste ###
 
-X_census_treinamento, X_census_teste, y_census_treinamento, y_census_teste = (
+X_census_training, X_census_test, y_census_training, y_census_test = (
 train_test_split(X_census, y_census, test_size=0.15, random_state=0))
 
 ### Salvando-pré-processamento ###
 
 with open('census_data.pkl', mode='wb') as f:
-    pickle.dump([X_census_treinamento, y_census_treinamento,
-                 X_census_teste, y_census_teste], f)
+    pickle.dump([X_census_training, y_census_training,
+                 X_census_test, y_census_test], f)
 
