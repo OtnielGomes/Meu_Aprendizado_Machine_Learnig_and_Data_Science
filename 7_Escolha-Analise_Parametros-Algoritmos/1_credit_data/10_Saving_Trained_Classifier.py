@@ -25,7 +25,7 @@ svm_classifier.fit(X_credit, y_credit)
 # Neural Network
 neural_classifier = MLPClassifier(activation='relu',
                                   batch_size=56,
-                                  hidden_layer_sizes=100,
+                                  hidden_layer_sizes=10,
                                   max_iter=30000,
                                   solver='adam',
                                   tol=1e-08)

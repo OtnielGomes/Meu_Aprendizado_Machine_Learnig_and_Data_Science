@@ -6,14 +6,15 @@ import pickle
 
 with open('credit_cross.pkl', mode='rb') as f:
     X_credit, y_credit = pickle.load(f)
-
-result_neural_network= list()
+help(MLPClassifier)
+result_neural_network \
+    = list()
 for i in range(30):
     kfold = KFold(n_splits=10, shuffle=True, random_state=i)
 
     neural_network = MLPClassifier(activation='relu',
-                                   batch_size=1024,
-                                   hidden_layer_sizes=100,
+                                   batch_size=56,
+                                   hidden_layer_sizes=10,
                                    max_iter=30000,
                                    solver='adam',
                                    tol=1e-08,
