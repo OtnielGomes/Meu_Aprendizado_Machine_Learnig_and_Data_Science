@@ -62,7 +62,7 @@ for i in range(30):
     result_logist_regression.append(score_logistic_regression.mean())
 
     # SVM
-    svm = SVC(C=1.5,
+    svm = SVC(C=2.0,
               kernel='rbf',
               tol=0.001)
     score_svm = cross_val_score(svm,

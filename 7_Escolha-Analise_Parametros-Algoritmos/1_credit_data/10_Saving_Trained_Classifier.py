@@ -17,7 +17,7 @@ tree_classifier = DecisionTreeClassifier(criterion='entropy',
 tree_classifier.fit(X_credit, y_credit)
 
 # SVM
-svm_classifier = SVC(C=1.5,
+svm_classifier = SVC(C=2.0,
                      kernel='rbf',
                      tol=0.001)
 svm_classifier.fit(X_credit, y_credit)
