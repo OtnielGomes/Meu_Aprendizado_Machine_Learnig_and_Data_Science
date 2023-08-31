@@ -9,9 +9,9 @@ with open('credit_cross.pkl', mode='rb') as f:
 # Testing parameters
 help(MLPClassifier)
 parameters = {'hidden_layer_sizes': [(2, 2), (100, 100), 100],
-              'batch_size': ['auto', 1024, 56, 10],
-              'solver': ['adam', 'sgd', 'lbfgs'],
-              'activation': ['identity', 'logistic', 'tanh', 'relu'],
+              'batch_size': ['auto', 1024, 56],
+              'solver': ['adam'],
+              'activation': ['relu'],
               'max_iter': [30000],
               'tol': [0.00000001],
               'verbose': [True]}
@@ -24,4 +24,9 @@ best_score = grid_search.best_score_
 print(best_parameters)
 print(best_score)
 
-#
+# activation='relu',
+#  batch_size=56,
+# hidden_layer_sizes=100,
+# max_iter=30000,
+# solver='adam',
+# tol=1e-08)

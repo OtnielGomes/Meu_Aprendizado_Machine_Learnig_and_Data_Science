@@ -8,6 +8,7 @@ from sklearn.neural_network import MLPClassifier
 import pandas as pd
 import numpy as np
 import pickle
+
 # Pre-processing
 with open('credit_cross.pkl', mode='rb') as f:
     X_credit, y_credit = pickle.load(f)
@@ -71,8 +72,8 @@ for i in range(30):
 
     # Neural_Network
     neural_network = MLPClassifier(activation='relu',
-                                   batch_size=1024,
-                                   hidden_layer_sizes=(2, 2),
+                                   batch_size=56,
+                                   hidden_layer_sizes=100,
                                    max_iter=30000,
                                    solver='adam',
                                    tol=1e-08)
@@ -80,7 +81,6 @@ for i in range(30):
                                            X_credit, y_credit,
                                            cv=kfold)
     result_neural_network.append(score_neural_network.mean())
-
 
 # Pos-processing/ salve data
 
@@ -91,7 +91,7 @@ results = {'Decision Tree': result_decision_tree,
            'SVM': result_svm,
            'Neural Network': result_neural_network}
 df_result = pd.DataFrame(results)
-df_result.to_cvs('Data_results')
+df_result.to_csv('Data_results.csv')
 
 algorithms_scores = {'Accuracy': np.concatenate([result_decision_tree,
                                                  result_random_forest,
@@ -99,55 +99,13 @@ algorithms_scores = {'Accuracy': np.concatenate([result_decision_tree,
                                                  result_logist_regression,
                                                  result_svm,
                                                  result_neural_network]),
-                     'Algorithms': ['Tree', 'Tree', 'Tree', 'Tree', 'Tree',
-                                    'Tree', 'Tree', 'Tree', 'Tree', 'Tree',
-                                    'Tree', 'Tree', 'Tree', 'Tree', 'Tree',
-                                    'Tree', 'Tree', 'Tree', 'Tree', 'Tree',
-                                    'Tree', 'Tree', 'Tree', 'Tree', 'Tree',
-                                    'Tree', 'Tree', 'Tree', 'Tree', 'Tree',
-                                    'Random_Forest', 'Random_forest',
-                                    'Random_forest', 'Random_forest',
-                                    'Random_forest', 'Random_forest',
-                                    'Random_forest', 'Random_forest',
-                                    'Random_forest', 'Random_forest',
-                                    'Random_forest', 'Random_forest',
-                                    'Random_forest', 'Random_forest',
-                                    'Random_forest', 'Random_forest',
-                                    'Random_forest', 'Random_forest',
-                                    'Random_forest', 'Random_forest',
-                                    'Random_forest', 'Random_forest',
-                                    'Random_forest', 'Random_forest',
-                                    'Random_forest', 'Random_forest',
-                                    'Random_forest', 'Random_forest',
-                                    'Random_forest', 'Random_forest',
-                                    'KNN', 'KNN', 'KNN', 'KNN', 'KNN', 'KNN',
-                                    'KNN', 'KNN', 'KNN', 'KNN', 'KNN', 'KNN',
-                                    'KNN', 'KNN', 'KNN', 'KNN', 'KNN', 'KNN',
-                                    'KNN', 'KNN', 'KNN', 'KNN', 'KNN', 'KNN',
-                                    'KNN', 'KNN', 'KNN', 'KNN', 'KNN', 'KNN',
-                                    'Logistic', 'Logistic', 'Logistic',
-                                    'Logistic', 'Logistic', 'Logistic',
-                                    'Logistic', 'Logistic', 'Logistic',
-                                    'Logistic', 'Logistic', 'Logistic',
-                                    'Logistic', 'Logistic', 'Logistic',
-                                    'Logistic', 'Logistic', 'Logistic',
-                                    'Logistic', 'Logistic', 'Logistic',
-                                    'Logistic', 'Logistic', 'Logistic',
-                                    'Logistic', 'Logistic', 'Logistic',
-                                    'Logistic', 'Logistic', 'Logistic',
-                                    'SVM', 'SVM', 'SVM', 'SVM', 'SVM', 'SVM',
-                                    'SVM', 'SVM', 'SVM', 'SVM', 'SVM', 'SVM',
-                                    'SVM', 'SVM', 'SVM', 'SVM', 'SVM', 'SVM',
-                                    'SVM', 'SVM', 'SVM', 'SVM', 'SVM', 'SVM',
-                                    'SVM', 'SVM', 'SVM', 'SVM', 'SVM', 'SVM',
-                                    'Neural', 'Neural', 'Neural', 'Neural',
-                                    'Neural', 'Neural', 'Neural', 'Neural',
-                                    'Neural', 'Neural', 'Neural', 'Neural',
-                                    'Neural', 'Neural', 'Neural', 'Neural',
-                                    'Neural', 'Neural', 'Neural', 'Neural',
-                                    'Neural', 'Neural', 'Neural', 'Neural',
-                                    'Neural', 'Neural', 'Neural', 'Neural',
-                                    'Neural', 'Neural']}
-df_algorithms_scores = pd.DataFrame(algorithms_scores)
-df_algorithms_scores.to_cvs('algorithms_scores')
+                     'Algorithms': (['Decision_Tree'] *
+                                    len(result_decision_tree)) +
+                     (['Random_Forest'] * len(result_random_forest)) +
+                     (['KNN'] * len(result_knn)) +
+                     (['Logistic_Regression'] * len(result_logist_regression)) +
+                     (['SVM'] * len(result_svm)) +
+                     (['Neural_Network'] * len(result_neural_network))}
 
+df_algorithms_scores = pd.DataFrame(algorithms_scores)
+df_algorithms_scores.to_csv('algorithms_scores.csv')
