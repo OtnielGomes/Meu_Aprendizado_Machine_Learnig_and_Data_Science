@@ -24,5 +24,6 @@ best_score = grid_search.best_score_
 print(best_parameters)
 print(best_score)
 
-# {'activation': 'relu', 'batch_size': 56, 'hidden_layer_sizes': 10, 'max_iter': 30000, 'solver': 'adam', 'tol': 1e-08, 'verbose': True}
+# {'activation': 'relu', 'batch_size': 56, 'hidden_layer_sizes': 10,
+# 'max_iter': 30000, 'solver': 'adam', 'tol': 1e-08, 'verbose': True}
 # 0.998

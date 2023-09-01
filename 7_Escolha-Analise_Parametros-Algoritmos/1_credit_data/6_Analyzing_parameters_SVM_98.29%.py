@@ -9,7 +9,7 @@ with open('credit_cross.pkl', mode='rb') as f:
 # Testing parameters
 help(SVC)
 parameters = {'kernel': ['linear', 'poly', 'rbf', 'sigmoid'],
-              'C': [1.0, 1.5, 2.0],
+              'C': [7, 2],
               'tol': [1e-3, 0.00001, 0.000001]}
 grid_search = GridSearchCV(estimator=SVC(),
                            param_grid=parameters)
@@ -21,5 +21,5 @@ best_score = grid_search.best_score_
 print(best_parameters)
 print(best_score)
 
-# {'C': 1.5, 'kernel': 'rbf', 'tol': 0.001}
+# {'C': 7, 'kernel': 'rbf', 'tol': 0.001}
 # 0.9829999999999999

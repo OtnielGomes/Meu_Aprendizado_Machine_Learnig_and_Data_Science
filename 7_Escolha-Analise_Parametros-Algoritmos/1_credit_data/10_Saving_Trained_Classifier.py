@@ -17,9 +17,10 @@ tree_classifier = DecisionTreeClassifier(criterion='entropy',
 tree_classifier.fit(X_credit, y_credit)
 
 # SVM
-svm_classifier = SVC(C=2.0,
+svm_classifier = SVC(C=7,
                      kernel='rbf',
-                     tol=0.001)
+                     tol=0.001,
+                     probability=True)
 svm_classifier.fit(X_credit, y_credit)
 
 # Neural Network
