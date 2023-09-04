@@ -28,3 +28,6 @@ print(f'\nTraining Score: {training_score}\nTest Score: {test_score}')
 print(f'\nMAE: {mae}\nMSE: {mse}')
 
 
+# {'criterion': 'squared_error', 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 100}
+# -69072.71066256534
+# MAE: 25631.676303636512
